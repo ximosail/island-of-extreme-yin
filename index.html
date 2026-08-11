@@ -6,13 +6,78 @@
 <title>极阴岛 · 公网IP</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-h1 { color: #1a1a2e; font-size: 24px; }
-p { color: #999; margin-top: 12px; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; }
+.header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #fff; padding: 28px 20px 20px; text-align: center; }
+.header h1 { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+.header .time { font-size: 13px; opacity: 0.7; margin-top: 6px; }
+.ip-section { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
+.ip-card { background: rgba(255,255,255,0.12); border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.ip-label { font-weight: 700; color: #64ffda; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; }
+.ip-addr { color: #fff; font-family: "SF Mono", "Fira Code", monospace; font-size: 14px; word-break: break-all; }
+.ip-copy { background: rgba(255,255,255,0.2) !important; color: #fff !important; border: 1px solid rgba(255,255,255,0.3) !important; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+.table-wrap { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { background: #fafafa; color: #555; padding: 12px 14px; text-align: left; font-weight: 600; border-bottom: 2px solid #e8e8e8; white-space: nowrap; }
+td { padding: 11px 14px; border-bottom: 1px solid #f0f0f0; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f8f9ff; }
+td a { color: #2563eb; text-decoration: none; word-break: break-all; }
+td a:hover { text-decoration: underline; }
+td.na { color: #bbb; }
+.copy-btn { display: inline-block; padding: 3px 12px; margin-left: 8px; font-size: 12px; border: 1px solid #d9d9d9; border-radius: 4px; background: #fff; color: #666; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.copy-btn:hover { border-color: #2563eb; color: #2563eb; }
+.copy-btn.copied { background: #f0fdf4; border-color: #22c55e; color: #22c55e; }
+.footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
+@media (max-width: 600px) {
+    .container { padding: 12px; }
+    table { font-size: 13px; }
+    th, td { padding: 8px 10px; }
+    .ip-card { flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 14px; }
+}
 </style>
 </head>
 <body>
-<h1>极阴岛 · 公网IP</h1>
-<p>等待首次IP检测...</p>
+<div class="header">
+    <h1>极阴岛 · 公网IP</h1>
+    <div class="time">更新时间: 2026-08-11 18:23:16</div>
+    <div class="ip-section"><div class="ip-card"><span class="ip-label">IPv4</span><code class="ip-addr">171.213.229.116</code><button class="copy-btn ip-copy" onclick="copyUrl('171.213.229.116',this)">复制</button></div><div class="ip-card"><span class="ip-label">IPv6</span><code class="ip-addr">240e:39d:33:d760:f875:d837:9a0f:a865</code><button class="copy-btn ip-copy" onclick="copyUrl('240e:39d:33:d760:f875:d837:9a0f:a865',this)">复制</button></div></div>
+</div>
+<div class="container">
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>服务</th><th>端口</th><th>IPv4 直达</th><th>IPv6 直达</th></tr></thead>
+            <tbody><tr><td>绿联NAS</td><td>10000</td><td><a href="http://171.213.229.116:10000" target="_blank">http://171.213.229.116:10000</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:10000',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:10000" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:10000</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:10000',this)">复制</button></td><tr><td>威联通NAS</td><td>5000</td><td><a href="http://171.213.229.116:5000" target="_blank">http://171.213.229.116:5000</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:5000',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:5000" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:5000</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:5000',this)">复制</button></td><tr><td>OpenClaw</td><td>18789</td><td><a href="http://171.213.229.116:18789" target="_blank">http://171.213.229.116:18789</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:18789',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:18789" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:18789</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:18789',this)">复制</button></td><tr><td>主页</td><td>20001</td><td><a href="http://171.213.229.116:20001" target="_blank">http://171.213.229.116:20001</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:20001',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:20001" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:20001</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:20001',this)">复制</button></td><tr><td>威联通Docker Copilot</td><td>3333</td><td><a href="http://171.213.229.116:3333" target="_blank">http://171.213.229.116:3333</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:3333',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:3333" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:3333</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:3333',this)">复制</button></td><tr><td>Jellyfin</td><td>8899</td><td><a href="http://171.213.229.116:8899" target="_blank">http://171.213.229.116:8899</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:8899',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:8899" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:8899</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:8899',this)">复制</button></td><tr><td>qBittorrent</td><td>8888</td><td><a href="http://171.213.229.116:8888" target="_blank">http://171.213.229.116:8888</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:8888',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:8888" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:8888</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:8888',this)">复制</button></td><tr><td>节点小宝</td><td>9118</td><td><a href="http://171.213.229.116:9118" target="_blank">http://171.213.229.116:9118</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:9118',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:9118" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:9118</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:9118',this)">复制</button></td><tr><td>爱盼</td><td>13001</td><td><a href="http://171.213.229.116:13001" target="_blank">http://171.213.229.116:13001</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:13001',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:13001" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:13001</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:13001',this)">复制</button></td><tr><td>metatube</td><td>11024</td><td><a href="http://171.213.229.116:11024" target="_blank">http://171.213.229.116:11024</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:11024',this)">复制</button></td><td><a href="http://[240e:39d:33:d760:f875:d837:9a0f:a865]:11024" target="_blank">http://[240e:39d:33:d760:f875:d837:9a0f:a865]:11024</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760:f875:d837:9a0f:a865]:11024',this)">复制</button></td></tbody>
+        </table>
+    </div>
+</div>
+<div class="footer">IP 变化时自动更新</div>
+<script>
+function copyUrl(text, btn) {
+    navigator.clipboard.writeText(text).then(function() {
+        btn.textContent = '已复制';
+        btn.classList.add('copied');
+        setTimeout(function() {
+            btn.textContent = '复制';
+            btn.classList.remove('copied');
+        }, 1500);
+    }).catch(function() {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = '已复制';
+        btn.classList.add('copied');
+        setTimeout(function() {
+            btn.textContent = '复制';
+            btn.classList.remove('copied');
+        }, 1500);
+    });
+}
+</script>
 </body>
 </html>
