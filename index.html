@@ -5,79 +5,208 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>极阴岛 · 公网IP</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; }
-.header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: #fff; padding: 28px 20px 20px; text-align: center; }
-.header h1 { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
-.header .time { font-size: 13px; opacity: 0.7; margin-top: 6px; }
-.ip-section { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
-.ip-card { background: rgba(255,255,255,0.12); border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; }
-.ip-label { font-weight: 700; color: #64ffda; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; }
-.ip-addr { color: #fff; font-family: "SF Mono", "Fira Code", monospace; font-size: 14px; word-break: break-all; }
-.ip-copy { background: rgba(255,255,255,0.2) !important; color: #fff !important; border: 1px solid rgba(255,255,255,0.3) !important; }
-.container { max-width: 900px; margin: 0 auto; padding: 20px; }
-.table-wrap { background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-th { background: #fafafa; color: #555; padding: 12px 14px; text-align: left; font-weight: 600; border-bottom: 2px solid #e8e8e8; white-space: nowrap; }
-td { padding: 11px 14px; border-bottom: 1px solid #f0f0f0; }
-tr:last-child td { border-bottom: none; }
-tr:hover td { background: #f8f9ff; }
-td a { color: #2563eb; text-decoration: none; word-break: break-all; }
-td a:hover { text-decoration: underline; }
-td.na { color: #bbb; }
-.copy-btn { display: inline-block; padding: 3px 12px; margin-left: 8px; font-size: 12px; border: 1px solid #d9d9d9; border-radius: 4px; background: #fff; color: #666; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-.copy-btn:hover { border-color: #2563eb; color: #2563eb; }
-.copy-btn.copied { background: #f0fdf4; border-color: #22c55e; color: #22c55e; }
-.footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
-@media (max-width: 600px) {
-    .container { padding: 12px; }
-    table { font-size: 13px; }
-    th, td { padding: 8px 10px; }
-    .ip-card { flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 14px; }
+:root{
+  --bg:#faf6ef; --card:#fffdf8; --note:#f4efe2; --border:#e0d6c0;
+  --ink:#2f2a24; --ink-2:#7a6f5e; --accent:#993c1d; --accent-2:#c2552f;
+  --tag-bg:#f5e3d8; --link:#8c2f1a; --seal-text:#faf6ef;
+}
+[data-theme="dark"]{
+  --bg:#1a1612; --card:#231e17; --note:#2b251c; --border:#3d3427;
+  --ink:#e6ddcc; --ink-2:#9c8f7b; --accent:#d85a30; --accent-2:#f0997b;
+  --tag-bg:#3a2a20; --link:#f0997b; --seal-text:#1a1612;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Noto Serif SC","Source Han Serif SC","STSong","SimSun","Songti SC",serif;
+  background:var(--bg);color:var(--ink);min-height:100vh;
+  transition:background .3s,color .3s;
+}
+.hero{
+  text-align:center;padding:36px 20px 24px;position:relative;
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{display:flex;align-items:center;justify-content:center;gap:16px;}
+.seal{
+  width:56px;height:56px;position:relative;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255,255,255,.16) 0 5px, transparent 10px),
+    radial-gradient(circle at 72% 74%, rgba(0,0,0,.14) 0 4px, transparent 9px),
+    radial-gradient(circle at 66% 28%, rgba(255,255,255,.10) 0 3px, transparent 8px),
+    radial-gradient(circle at 30% 78%, rgba(0,0,0,.10) 0 3px, transparent 8px),
+    linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);
+  color:var(--seal-text);
+  border:2px solid var(--accent);
+  outline:1.5px solid var(--seal-text);outline-offset:-7px;
+  border-radius:6px;writing-mode:vertical-rl;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;letter-spacing:2px;flex-shrink:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.20),inset 0 0 10px rgba(0,0,0,.16);
+  transform:rotate(-2.5deg);opacity:.93;
+}
+.seal::after{
+  content:"";position:absolute;inset:0;border-radius:6px;pointer-events:none;
+  background:
+    radial-gradient(circle at 22% 42%, rgba(0,0,0,.08) 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 22%, rgba(255,255,255,.10) 0 2px, transparent 3px),
+    radial-gradient(circle at 52% 82%, rgba(0,0,0,.07) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 58%, rgba(255,255,255,.08) 0 2px, transparent 3px);
+}
+.hero h1{font-size:24px;font-weight:500;letter-spacing:4px;}
+.hero .sub{margin-top:10px;font-size:13px;color:var(--ink-2);letter-spacing:1px;}
+.theme-toggle{
+  position:absolute;right:16px;top:16px;padding:6px 14px;font-size:13px;
+  border:1px solid var(--border);border-radius:6px;background:var(--card);
+  color:var(--ink-2);cursor:pointer;font-family:inherit;letter-spacing:2px;
+}
+.theme-toggle:hover{color:var(--accent);border-color:var(--accent);}
+.container{max-width:960px;margin:0 auto;padding:20px 16px 40px;}
+.ip-area{
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:20px 0 18px;
+}
+.ip-note{
+  background:var(--note);border:1px solid var(--border);border-radius:10px;
+  padding:10px 14px;display:flex;align-items:center;gap:10px;font-size:13px;
+}
+.ip-note .tag{
+  background:var(--tag-bg);color:var(--accent);font-size:12px;padding:2px 8px;
+  border-radius:4px;letter-spacing:1px;flex-shrink:0;
+}
+.ip-note code{
+  font-family:"SF Mono","Fira Code","Consolas",monospace;font-size:13px;
+  word-break:break-all;color:var(--ink);
+}
+.copy-all{
+  display:block;margin:0 auto 24px;padding:10px 26px;font-size:14px;letter-spacing:3px;
+  background:var(--accent);color:var(--seal-text);border:none;border-radius:8px;
+  cursor:pointer;font-family:inherit;transition:background .2s;
+}
+.copy-all:hover{background:var(--accent-2);}
+.copy-all.ok{background:#3b6d11;}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.svc{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:16px 16px 14px;transition:border-color .2s;
+}
+.svc:hover{border-color:var(--accent);}
+.svc-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+.svc-head h3{font-size:16px;font-weight:500;letter-spacing:2px;}
+.svc-head .port{font-size:13px;color:var(--accent);font-family:var(--font-mono);}
+.link-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px;}
+.link-row .proto{
+  background:var(--tag-bg);color:var(--accent);font-size:11px;padding:1px 6px;
+  border-radius:3px;flex-shrink:0;font-family:monospace;
+}
+.link-row a{color:var(--link);text-decoration:none;word-break:break-all;flex:1;min-width:0;}
+.link-row a:hover{text-decoration:underline;}
+.mini{
+  padding:2px 10px;font-size:12px;border:1px solid var(--border);border-radius:4px;
+  background:transparent;color:var(--ink-2);cursor:pointer;font-family:inherit;flex-shrink:0;
+  transition:all .2s;
+}
+.mini:hover{color:var(--accent);border-color:var(--accent);}
+.mini.ok{color:#3b6d11;border-color:#3b6d11;background:#eaf3de;}
+[data-theme="dark"] .mini.ok{color:#97c459;border-color:#97c459;background:#2a3518;}
+.qr{display:flex;justify-content:center;margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);}
+.qr canvas{background:#fff;border-radius:6px;}
+.cloud-line{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px auto 22px;max-width:440px;}
+.cloud-line::before,.cloud-line::after{content:"";flex:1;height:1px;background:var(--border);}
+.cloud{width:34px;height:14px;position:relative;flex-shrink:0;}
+.cloud::before{
+  content:"";position:absolute;left:1px;top:5px;width:22px;height:8px;
+  border:1.5px solid var(--border);border-radius:8px;
+}
+.cloud::after{
+  content:"";position:absolute;left:13px;top:0;width:13px;height:13px;
+  border:1.5px solid var(--border);border-radius:50%;
+}
+.cloud.flip{transform:scaleX(-1);}
+.footer{text-align:center;padding:0 0 30px;color:var(--ink-2);font-size:12px;letter-spacing:2px;}
+.footer .ts{margin-top:8px;font-size:11px;letter-spacing:1px;color:var(--ink-2);opacity:.75;}
+@media (max-width:600px){
+  .hero{padding:28px 12px 18px;}
+  .hero h1{font-size:20px;}
+  .theme-toggle{position:static;display:inline-block;margin-top:12px;}
+  .cards{grid-template-columns:1fr;}
 }
 </style>
 </head>
-<body>
-<div class="header">
-    <h1>极阴岛 · 公网IP</h1>
-    <div class="time">更新时间: 2026-08-11 20:15:10</div>
-    <div class="ip-section"><div class="ip-card"><span class="ip-label">IPv4</span><code class="ip-addr">171.213.229.116</code><button class="copy-btn ip-copy" onclick="copyUrl('171.213.229.116',this)">复制</button></div><div class="ip-card"><span class="ip-label">IPv6</span><code class="ip-addr">240e:39d:33:d760::897</code><button class="copy-btn ip-copy" onclick="copyUrl('240e:39d:33:d760::897',this)">复制</button></div></div>
-</div>
-<div class="container">
-    <div class="table-wrap">
-        <table>
-            <thead><tr><th>服务</th><th>端口</th><th>IPv4 直达</th><th>IPv6 直达</th></tr></thead>
-            <tbody><tr><td>绿联NAS</td><td>10000</td><td><a href="http://171.213.229.116:10000" target="_blank">http://171.213.229.116:10000</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:10000',this)">复制</button></td><td><a href="http://[240e:39d:33:d760::897]:10000" target="_blank">http://[240e:39d:33:d760::897]:10000</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760::897]:10000',this)">复制</button></td><tr><td>威联通NAS</td><td>5000</td><td><a href="http://171.213.229.116:5000" target="_blank">http://171.213.229.116:5000</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:5000',this)">复制</button></td><td><a href="http://[240e:39d:33:d760::897]:5000" target="_blank">http://[240e:39d:33:d760::897]:5000</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760::897]:5000',this)">复制</button></td><tr><td>OpenClaw</td><td>18789</td><td><a href="http://171.213.229.116:18789" target="_blank">http://171.213.229.116:18789</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:18789',this)">复制</button></td><td><a href="http://[240e:39d:33:d760::897]:18789" target="_blank">http://[240e:39d:33:d760::897]:18789</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760::897]:18789',this)">复制</button></td><tr><td>主页</td><td>20001</td><td><a href="http://171.213.229.116:20001" target="_blank">http://171.213.229.116:20001</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:20001',this)">复制</button></td><td><a href="http://[240e:39d:33:d760::897]:20001" target="_blank">http://[240e:39d:33:d760::897]:20001</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760::897]:20001',this)">复制</button></td><tr><td>威联通Docker Copilot</td><td>3333</td><td><a href="http://171.213.229.116:3333" target="_blank">http://171.213.229.116:3333</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:3333',this)">复制</button></td><td><a href="http://[240e:39d:33:d760::897]:3333" target="_blank">http://[240e:39d:33:d760::897]:3333</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760::897]:3333',this)">复制</button></td><tr><td>Jellyfin</td><td>8899</td><td><a href="http://171.213.229.116:8899" target="_blank">http://171.213.229.116:8899</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:8899',this)">复制</button></td><td><a href="http://[240e:39d:33:d760::897]:8899" target="_blank">http://[240e:39d:33:d760::897]:8899</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760::897]:8899',this)">复制</button></td><tr><td>qBittorrent</td><td>8888</td><td><a href="http://171.213.229.116:8888" target="_blank">http://171.213.229.116:8888</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:8888',this)">复制</button></td><td><a href="http://[240e:39d:33:d760::897]:8888" target="_blank">http://[240e:39d:33:d760::897]:8888</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760::897]:8888',this)">复制</button></td><tr><td>节点小宝</td><td>9118</td><td><a href="http://171.213.229.116:9118" target="_blank">http://171.213.229.116:9118</a> <button class="copy-btn" onclick="copyUrl('http://171.213.229.116:9118',this)">复制</button></td><td><a href="http://[240e:39d:33:d760::897]:9118" target="_blank">http://[240e:39d:33:d760::897]:9118</a> <button class="copy-btn" onclick="copyUrl('http://[240e:39d:33:d760::897]:9118',this)">复制</button></td></tbody>
-        </table>
+<body data-theme="light">
+<header class="hero">
+  <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">夜览</button>
+  <div class="hero-inner">
+    <div class="seal">极阴岛</div>
+    <div>
+      <h1>极阴岛 · 公网IP</h1>
+      <p class="sub">更新于 巳时二刻 · 2026-08-12</p>
     </div>
+  </div>
+  <div class="ip-area"><div class="ip-note"><span class="tag">IPv4</span><code>171.213.229.116</code><button class="mini" onclick="copyText('171.213.229.116',this)">复制</button></div><div class="ip-note"><span class="tag">IPv6</span><code>240e:39d:33:d760::897</code><button class="mini" onclick="copyText('240e:39d:33:d760::897',this)">复制</button></div></div>
+</header>
+<div class="container">
+  <button class="copy-all" onclick="copyAll(this)">一键复制全部</button>
+  <div class="cloud-line"><span class="cloud"></span><span class="cloud flip"></span></div>
+  <section class="cards"><article class="svc" data-name="绿联NAS"><header class="svc-head"><h3>绿联NAS</h3><span class="port">10000</span></header><div class="link-row"><span class="proto">IPv4</span><a href="http://171.213.229.116:10000" target="_blank" data-raw="http://171.213.229.116:10000">http://171.213.229.116:10000</a><button class="mini" onclick="copyText('http://171.213.229.116:10000',this)">复制</button></div><div class="link-row"><span class="proto">IPv6</span><a href="http://[240e:39d:33:d760::897]:10000" target="_blank" data-raw="http://[240e:39d:33:d760::897]:10000">http://[240e:39d:33:d760::897]:10000</a><button class="mini" onclick="copyText('http://[240e:39d:33:d760::897]:10000',this)">复制</button></div><div class="qr" data-qr="http://171.213.229.116:10000"></div></article><article class="svc" data-name="威联通NAS"><header class="svc-head"><h3>威联通NAS</h3><span class="port">5000</span></header><div class="link-row"><span class="proto">IPv4</span><a href="http://171.213.229.116:5000" target="_blank" data-raw="http://171.213.229.116:5000">http://171.213.229.116:5000</a><button class="mini" onclick="copyText('http://171.213.229.116:5000',this)">复制</button></div><div class="link-row"><span class="proto">IPv6</span><a href="http://[240e:39d:33:d760::897]:5000" target="_blank" data-raw="http://[240e:39d:33:d760::897]:5000">http://[240e:39d:33:d760::897]:5000</a><button class="mini" onclick="copyText('http://[240e:39d:33:d760::897]:5000',this)">复制</button></div><div class="qr" data-qr="http://171.213.229.116:5000"></div></article><article class="svc" data-name="OpenClaw"><header class="svc-head"><h3>OpenClaw</h3><span class="port">18789</span></header><div class="link-row"><span class="proto">IPv4</span><a href="http://171.213.229.116:18789" target="_blank" data-raw="http://171.213.229.116:18789">http://171.213.229.116:18789</a><button class="mini" onclick="copyText('http://171.213.229.116:18789',this)">复制</button></div><div class="link-row"><span class="proto">IPv6</span><a href="http://[240e:39d:33:d760::897]:18789" target="_blank" data-raw="http://[240e:39d:33:d760::897]:18789">http://[240e:39d:33:d760::897]:18789</a><button class="mini" onclick="copyText('http://[240e:39d:33:d760::897]:18789',this)">复制</button></div><div class="qr" data-qr="http://171.213.229.116:18789"></div></article><article class="svc" data-name="主页"><header class="svc-head"><h3>主页</h3><span class="port">20001</span></header><div class="link-row"><span class="proto">IPv4</span><a href="http://171.213.229.116:20001" target="_blank" data-raw="http://171.213.229.116:20001">http://171.213.229.116:20001</a><button class="mini" onclick="copyText('http://171.213.229.116:20001',this)">复制</button></div><div class="link-row"><span class="proto">IPv6</span><a href="http://[240e:39d:33:d760::897]:20001" target="_blank" data-raw="http://[240e:39d:33:d760::897]:20001">http://[240e:39d:33:d760::897]:20001</a><button class="mini" onclick="copyText('http://[240e:39d:33:d760::897]:20001',this)">复制</button></div><div class="qr" data-qr="http://171.213.229.116:20001"></div></article><article class="svc" data-name="威联通Docker Copilot"><header class="svc-head"><h3>威联通Docker Copilot</h3><span class="port">3333</span></header><div class="link-row"><span class="proto">IPv4</span><a href="http://171.213.229.116:3333" target="_blank" data-raw="http://171.213.229.116:3333">http://171.213.229.116:3333</a><button class="mini" onclick="copyText('http://171.213.229.116:3333',this)">复制</button></div><div class="link-row"><span class="proto">IPv6</span><a href="http://[240e:39d:33:d760::897]:3333" target="_blank" data-raw="http://[240e:39d:33:d760::897]:3333">http://[240e:39d:33:d760::897]:3333</a><button class="mini" onclick="copyText('http://[240e:39d:33:d760::897]:3333',this)">复制</button></div><div class="qr" data-qr="http://171.213.229.116:3333"></div></article><article class="svc" data-name="Jellyfin"><header class="svc-head"><h3>Jellyfin</h3><span class="port">8899</span></header><div class="link-row"><span class="proto">IPv4</span><a href="http://171.213.229.116:8899" target="_blank" data-raw="http://171.213.229.116:8899">http://171.213.229.116:8899</a><button class="mini" onclick="copyText('http://171.213.229.116:8899',this)">复制</button></div><div class="link-row"><span class="proto">IPv6</span><a href="http://[240e:39d:33:d760::897]:8899" target="_blank" data-raw="http://[240e:39d:33:d760::897]:8899">http://[240e:39d:33:d760::897]:8899</a><button class="mini" onclick="copyText('http://[240e:39d:33:d760::897]:8899',this)">复制</button></div><div class="qr" data-qr="http://171.213.229.116:8899"></div></article><article class="svc" data-name="qBittorrent"><header class="svc-head"><h3>qBittorrent</h3><span class="port">8888</span></header><div class="link-row"><span class="proto">IPv4</span><a href="http://171.213.229.116:8888" target="_blank" data-raw="http://171.213.229.116:8888">http://171.213.229.116:8888</a><button class="mini" onclick="copyText('http://171.213.229.116:8888',this)">复制</button></div><div class="link-row"><span class="proto">IPv6</span><a href="http://[240e:39d:33:d760::897]:8888" target="_blank" data-raw="http://[240e:39d:33:d760::897]:8888">http://[240e:39d:33:d760::897]:8888</a><button class="mini" onclick="copyText('http://[240e:39d:33:d760::897]:8888',this)">复制</button></div><div class="qr" data-qr="http://171.213.229.116:8888"></div></article><article class="svc" data-name="节点小宝"><header class="svc-head"><h3>节点小宝</h3><span class="port">9118</span></header><div class="link-row"><span class="proto">IPv4</span><a href="http://171.213.229.116:9118" target="_blank" data-raw="http://171.213.229.116:9118">http://171.213.229.116:9118</a><button class="mini" onclick="copyText('http://171.213.229.116:9118',this)">复制</button></div><div class="link-row"><span class="proto">IPv6</span><a href="http://[240e:39d:33:d760::897]:9118" target="_blank" data-raw="http://[240e:39d:33:d760::897]:9118">http://[240e:39d:33:d760::897]:9118</a><button class="mini" onclick="copyText('http://[240e:39d:33:d760::897]:9118',this)">复制</button></div><div class="qr" data-qr="http://171.213.229.116:9118"></div></article></section>
 </div>
-<div class="footer">IP 变化时自动更新</div>
+<footer class="footer">
+  <div class="cloud-line"><span class="cloud"></span><span class="cloud flip"></span></div>
+  IP 变化时自动更新 · 绿联NAS守护
+  <div class="ts">2026-08-12 09:43:00</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-function copyUrl(text, btn) {
-    navigator.clipboard.writeText(text).then(function() {
-        btn.textContent = '已复制';
-        btn.classList.add('copied');
-        setTimeout(function() {
-            btn.textContent = '复制';
-            btn.classList.remove('copied');
-        }, 1500);
-    }).catch(function() {
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        btn.textContent = '已复制';
-        btn.classList.add('copied');
-        setTimeout(function() {
-            btn.textContent = '复制';
-            btn.classList.remove('copied');
-        }, 1500);
-    });
+function applyTheme(t){
+  document.body.setAttribute('data-theme',t);
+  try{localStorage.setItem('jy_theme',t);}catch(e){}
+  var btn=document.getElementById('themeBtn');
+  if(btn){btn.textContent=(t==='dark'?'昼览':'夜览');}
 }
+(function(){
+  var saved=null;
+  try{saved=localStorage.getItem('jy_theme');}catch(e){}
+  var t=saved||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  applyTheme(t);
+})();
+function toggleTheme(){
+  var cur=document.body.getAttribute('data-theme');
+  applyTheme(cur==='dark'?'light':'dark');
+}
+function legacyCopy(text){
+  var ta=document.createElement('textarea');
+  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+}
+function copyText(text,btn,okText){
+  var done=function(){
+    if(!btn)return;
+    var old=btn.textContent;
+    btn.textContent=okText||'已复制';
+    btn.classList.add('ok');
+    setTimeout(function(){btn.textContent=old;btn.classList.remove('ok');},1200);
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done,function(){legacyCopy(text);done();});
+  }else{legacyCopy(text);done();}
+}
+function copyAll(btn){
+  var lines=[];
+  document.querySelectorAll('.svc').forEach(function(card){
+    var name=card.getAttribute('data-name');
+    card.querySelectorAll('a[data-raw]').forEach(function(a){
+      lines.push(name+' '+a.getAttribute('data-raw'));
+    });
+  });
+  if(!lines.length){copyText('',btn,'无链接');return;}
+  copyText(lines.join('\n'),btn,'已复制全部');
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('[data-qr]').forEach(function(el){
+    if(typeof QRCode==='undefined'){el.style.display='none';return;}
+    try{new QRCode(el,{text:el.getAttribute('data-qr'),width:88,height:88});}
+    catch(e){el.style.display='none';}
+  });
+});
 </script>
 </body>
 </html>
